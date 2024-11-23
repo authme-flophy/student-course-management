@@ -1,0 +1,30 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+*.DS_Store
+
+# Virtual environment
+env/
+venv/
+ENV/
+VENV/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+*.py[co]
+*.mo
+
+# Media
+/media/
+*.jpg
+*.png
+*.jpeg
+*.
