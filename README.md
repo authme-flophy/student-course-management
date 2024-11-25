@@ -161,3 +161,56 @@ Common status codes:
 - 403: Forbidden
 - 404: Not Found
 - 500: Internal Server Error
+
+## Project Setup
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### Setup Instructions
+
+1. Clone the repository
+
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   ```
+
+2. Create and activate virtual environment
+
+   ```bash
+   # On Windows
+   python -m venv venv
+   .\venv\Scripts\activate
+
+   # On macOS/Linux
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install dependencies
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run database migrations
+
+   ```bash
+   python manage.py migrate
+   ```
+
+5. Create a superuser (admin)
+
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. Start the development server
+   ```bash
+   python manage.py runserver
+   ```
+
+The application should now be running at `http://localhost:8000`
