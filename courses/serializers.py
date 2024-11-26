@@ -75,6 +75,28 @@ class UserSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
-    password = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+class InstructorDashboardSerializer(serializers.ModelSerializer):
+    total_students = serializers.SerializerMethodField()
+    total_lessons = serializers.SerializerMethodField()
+    recent_enrollments = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Course
+        fields = ['id', 'title', 'start_date', 'end_date', 'total_students', 'total_lessons', 'recent_enrollments']
+    
+    def get_total_students(self, obj):
+        return obj.enrollments.count()
+    
+    def get_total_lessons(self, obj):
+        return obj.lessons.count()
+    
+    def get_recent_enrollments(self, obj):
+        recent = obj.enrollments.order_by('-enrollment_date')[:5]
+        return [{
+            'student_name': enrollment.student.get_full_name() or enrollment.student.username,
+            'date': enrollment.enrollment_date
+        } for enrollment in recent]
 
 

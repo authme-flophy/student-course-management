@@ -2,10 +2,12 @@ from rest_framework import permissions
 
 class IsInstructor(permissions.BasePermission):
     """
-    Custom permission to only allow instructors to perform certain actions.
+    Custom permission to only allow instructors to access view.
     """
+    message = 'Only instructors can access this view.'
+
     def has_permission(self, request, view):
-        return request.user and hasattr(request.user, 'instructor')
+        return bool(request.user and request.user.is_authenticated and hasattr(request.user, 'instructor'))
 
 class IsInstructorOrReadOnly(permissions.BasePermission):
     """

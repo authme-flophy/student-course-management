@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_nested import routers
-from .views import CourseViewSet, EnrollmentViewSet, GradeViewSet, LessonViewSet
+from .views import CourseViewSet, EnrollmentViewSet, GradeViewSet, LessonViewSet, instructor_dashboard, course_details
 from .auth_views import RegisterView, LoginView, LogoutView
 
 router = DefaultRouter()
@@ -26,4 +26,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('instructor/dashboard/', instructor_dashboard, name='instructor-dashboard'),
+    path('instructor/courses/<int:course_id>/details/', course_details, name='course-details'),
 ]
